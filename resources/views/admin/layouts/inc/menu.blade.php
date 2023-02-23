@@ -38,6 +38,37 @@
                </a>
            </li>
 
+           <!-- Category Management -->
+           <li class="menu-header small text-uppercase">
+               <span class="menu-header-text">Category Management</span>
+           </li>
+
+           <li class="menu-item {{ Request::is('admin/category*') ? 'active open' : 'none' }}">
+               <a href="javascript:void(0);" class="menu-link menu-toggle">
+                   <i class="menu-icon tf-icons ti ti-users"></i>
+                   <div data-i18n="Users">Categories</div>
+               </a>
+
+               <ul class="menu-sub">
+                   <li class="menu-item {{ Request::is('admin/category/add') ? 'active' : '' }}">
+                       <a href="{{ route('admin.category.add') }}" class="menu-link">
+                           <div data-i18n="Account">Categories</div>
+                       </a>
+                   </li>
+                   <li class="menu-item {{ Request::is('admin/category/add-sub-category') ? 'active' : '' }}">
+                       <a href="{{ route('admin.category.add-sub-category') }}" class="menu-link">
+                           <div data-i18n="Account">Sub_categories</div>
+                       </a>
+                   </li>
+                   <li class="menu-item {{ Request::is('admin/category/add-sub-sub-category') ? 'active' : '' }}">
+                       <a href="{{ route('admin.category.add-sub-sub-category') }}" class="menu-link">
+                           <div data-i18n="Account">Sub_Sub_categories</div>
+                       </a>
+                   </li>
+               </ul>
+           </li>
+
+
            <!-- Apps & Pages -->
            <li class="menu-header small text-uppercase">
                <span class="menu-header-text">User Management</span>
@@ -144,7 +175,7 @@
            </li>
            {{-- Module menu --}}
            @can('general-setting')
-               <li class="menu-item @if (request()->routeIs('admin.settings.general', 'admin.backup.index')) active open @endif">
+               <li class="menu-item {{ Request::is('admin/settings*') ? 'active open' : 'none' }}">
                    <a href="javascript:void(0);" class="menu-link menu-toggle">
                        <i class="menu-icon tf-icons ti ti-tool"></i>
                        <div data-i18n="Wizard Examples">Buniness Setup </div>

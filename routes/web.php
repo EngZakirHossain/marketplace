@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\BackupController;
 use App\Http\Controllers\Backend\ModuleController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SMSModuleController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\Backend\PermissionController;
@@ -77,6 +78,19 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
         //payment module controller
         Route::get('payment-method', [SettingController::class,'payment_index'])->name('payment_method');
         Route::post('payment-method-update/{payment_method}',[SettingController::class,'payment_update'])->name('payment_method_update');
+    });
+
+    Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
+            Route::get('add', [CategoryController::class,'index'])->name('add');
+            Route::get('add-sub-category', [CategoryController::class,'sub_index'])->name('add-sub-category');
+            Route::get('add-sub-sub-category', [CategoryController::class,'sub_sub_index'])->name('add-sub-sub-category');
+            Route::post('store', [CategoryController::class,'store'])->name('store');
+            Route::get('edit/{id}', [CategoryController::class,'edit'])->name('edit');
+            Route::post('update/{id}', [CategoryController::class,'update'])->name('update');
+            Route::post('store', [CategoryController::class,'store'])->name('store');
+            Route::get('status/{id}/{status}', [CategoryController::class,'status'])->name('status');
+            Route::delete('delete/{id}', [CategoryController::class,'delete'])->name('delete');
+            Route::post('search', [CategoryController::class,'search'])->name('search');
     });
 
 });
