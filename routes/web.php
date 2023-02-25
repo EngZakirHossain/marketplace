@@ -10,6 +10,7 @@ use App\Http\Controllers\BkashPaymentController;
 use App\Http\Controllers\PaypalPaymentController;
 use App\Http\Controllers\Backend\BackupController;
 use App\Http\Controllers\Backend\ModuleController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -93,6 +94,31 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
             Route::post('search', [CategoryController::class,'search'])->name('search');
     });
 
+    Route::group(['prefix' => 'product', 'as' => 'product.',], function () {
+            Route::get('add-new', [ProductController::class,'index'])->name('add-new');
+            Route::post('variant-combination', [ProductController::class,'variant_combination'])->name('variant-combination');
+            Route::post('store', [ProductController::class,'store'])->name('store');
+            Route::get('edit/{id}', [ProductController::class,'edit'])->name('edit');
+            Route::post('update/{id}', [ProductController::class,'update'])->name('update');
+            Route::get('list', [ProductController::class,'list'])->name('list');
+            Route::delete('delete/{id}', [ProductController::class,'delete'])->name('delete');
+            Route::get('status/{id}/{status}', [ProductController::class,'status'])->name('status');
+            Route::post('search', [ProductController::class,'search'])->name('search');
+            Route::get('bulk-import', [ProductController::class,'bulk_import_index'])->name('bulk-import');
+            Route::post('bulk-import', [ProductController::class,'bulk_import_data']);
+            Route::get('bulk-export-index', [ProductController::class,'bulk_export_index'])->name('bulk-export-index');
+            Route::get('bulk-export', [ProductController::class,'bulk_export_data'])->name('bulk-export');
+
+            Route::get('view/{id}', [ProductController::class,'view'])->name('view');
+            Route::get('remove-image/{id}/{name}', [ProductController::class,'remove_image'])->name('remove-image');
+            Route::get('get-categories', [ProductController::class,'get_categories'])->name('get-categories');
+            Route::post('daily-needs', [ProductController::class,'daily_needs'])->name('daily-needs');
+
+            Route::get('limited-stock', [ProductController::class,'limited_stock'])->name('limited-stock');
+            Route::get('get-variations', [ProductController::class,'get_variations'])->name('get-variations');
+            Route::post('update-quantity', [ProductController::class,'update_quantity'])->name('update-quantity');
+
+    });
 });
 
   /*paypal*/

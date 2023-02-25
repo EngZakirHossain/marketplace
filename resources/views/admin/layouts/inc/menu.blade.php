@@ -45,7 +45,7 @@
 
            <li class="menu-item {{ Request::is('admin/category*') ? 'active open' : 'none' }}">
                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                   <i class="menu-icon tf-icons ti ti-users"></i>
+                   <i class="menu-icon tf-icons ti ti-category-2"></i>
                    <div data-i18n="Users">Categories</div>
                </a>
 
@@ -63,6 +63,27 @@
                    <li class="menu-item {{ Request::is('admin/category/add-sub-sub-category') ? 'active' : '' }}">
                        <a href="{{ route('admin.category.add-sub-sub-category') }}" class="menu-link">
                            <div data-i18n="Account">Sub_Sub_categories</div>
+                       </a>
+                   </li>
+               </ul>
+           </li>
+
+           <!-- Product Management -->
+           <li class="menu-header small text-uppercase">
+               <span class="menu-header-text">Product Management</span>
+           </li>
+
+           <li class="menu-item {{ Request::is('admin/product*') ? 'active open' : 'none' }}">
+               <a href="javascript:void(0);" class="menu-link menu-toggle">
+                   <i class="menu-icon tf-icons ti ti-brand-producthunt"></i>
+                   <div data-i18n="Users">Products</div>
+               </a>
+
+               <ul class="menu-sub">
+                   <li
+                       class="menu-item {{ Request::is('admin/product/list*') ? 'active' : '' }} {{ Request::is('admin/product/add-new') ? 'active' : '' }}">
+                       <a href="{{ route('admin.product.list') }}" class="menu-link">
+                           <div data-i18n="Account">Product list</div>
                        </a>
                    </li>
                </ul>
